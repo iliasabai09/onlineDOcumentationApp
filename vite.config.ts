@@ -11,7 +11,7 @@ export default defineConfig({
     vue(),
     legacy()
   ],
-  base: './',
+  base: './',//test
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
