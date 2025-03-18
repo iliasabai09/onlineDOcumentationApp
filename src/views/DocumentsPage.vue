@@ -61,9 +61,21 @@
 </template>
 
 <script setup lang="ts">
-import {IonHeader, IonPage, IonButtons, IonBackButton, IonTitle, IonToolbar} from "@ionic/vue";
+import {
+  IonHeader,
+  IonPage,
+  IonButtons,
+  IonBackButton,
+  IonTitle,
+  IonToolbar,
+  IonItem,
+  IonList,
+  IonIcon,
+  IonSpinner,
+  IonLabel
+} from "@ionic/vue";
 import {navigations} from "@/modules/CategoryModule/constants";
-import {chevronForwardOutline, alertCircleOutline} from "ionicons/icons";
+import {chevronForwardOutline} from "ionicons/icons";
 import {useCategoryModule} from "@/modules/CategoryModule/composables";
 import EmptyState from "@/components/EmptyState.vue";
 
