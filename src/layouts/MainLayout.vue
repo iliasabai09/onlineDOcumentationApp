@@ -1,20 +1,7 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>{{ route.path.replace('/main/', '') }}</ion-title>
-        <ion-buttons slot="end">
-          <ion-label class="ion-margin-end">{{ user?.displayName || '' }}</ion-label>
-          <ion-avatar class="small-avatar ion-margin-end">
-            <img
-                :src="user?.photoURL || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6wdgykq-ThIA44aml2xGQzEhCCuwoRFRPwg&s'"
-                alt="img"/>
-          </ion-avatar>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-    <ion-tabs>
-      <ion-router-outlet></ion-router-outlet>
+    <ion-tabs class="tabs">
+      <ion-router-outlet :stackedPages="false"></ion-router-outlet>
       <ion-tab-bar slot="bottom">
         <ion-tab-button tab="Documents" href="/main/Documents">
           <ion-icon aria-hidden="true" :icon="folderOpenOutline"/>
@@ -37,6 +24,7 @@
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
+
   </ion-page>
 </template>
 
@@ -49,8 +37,6 @@ import {
   IonIcon,
   IonPage,
   IonRouterOutlet,
-  IonToolbar,
-  IonHeader, IonTitle
 } from '@ionic/vue';
 import {
   folderOpenOutline,
@@ -58,11 +44,9 @@ import {
   bookmarkOutline,
   personOutline
 } from 'ionicons/icons';
-import {useRoute} from "vue-router";
 import {auth} from '@/firebase';
 import {onMounted, ref} from "vue";
 
-const route = useRoute();
 const user = ref<any>(null);
 
 // async function logout() {
