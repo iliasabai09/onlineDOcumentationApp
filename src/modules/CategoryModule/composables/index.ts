@@ -3,9 +3,9 @@ import CategoryService from '@/modules/CategoryModule/services/index'
 import {useRouter} from "vue-router";
 
 export function useCategoryModule() {
-    const categories = ref([]);
-    const selectedCategory = ref(null);
-    const loading = ref(false);
+    const categories = ref<any>([]);
+    const selectedCategory = ref<any>(null);
+    const loading = ref<boolean>(false);
     const router = useRouter();
 
     function _getCategoryDocs(categoryType: string) {
