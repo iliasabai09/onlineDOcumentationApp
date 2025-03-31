@@ -1,6 +1,6 @@
 <template>
-  <ion-page>
-    <ion-tabs class="tabs">
+  <ion-page class="page">
+    <ion-tabs class="tabs container">
       <ion-router-outlet :stackedPages="false"></ion-router-outlet>
       <ion-tab-bar slot="bottom">
         <ion-tab-button tab="Documents" href="/main/Documents">
@@ -24,7 +24,6 @@
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
-
   </ion-page>
 </template>
 
@@ -65,9 +64,16 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.small-avatar {
-  width: 28px;
-  height: 28px;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page {
+  //background-image: url('https://img.freepik.com/free-vector/christmas-snowy-background_1048-9078.jpg');
+  //background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRztE1-AC-bEk0C4KAE0XdmpD6hi4F67LFKQ&s');
+  background-image: url('https://wallpapers.com/images/hd/modern-city-at-night-blue-lights-as7hx3qru9ndrqb3.jpg');
+  background-size: cover;
 }
 
 .small-avatar img {

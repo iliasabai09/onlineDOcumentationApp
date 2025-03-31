@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "test:e2e": "cypress run",
@@ -22,6 +22,7 @@
     "@ionic/vue-router": "^8.0.0",
     "axios": "^1.8.3",
     "firebase": "^11.4.0",
+    "idb": "^8.0.2",
     "ionicons": "^7.0.0",
     "vue": "^3.3.0",
     "vue-router": "^4.2.0"

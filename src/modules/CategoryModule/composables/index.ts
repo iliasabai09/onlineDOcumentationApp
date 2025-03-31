@@ -1,6 +1,8 @@
 import {ref} from "vue";
 import CategoryService from '@/modules/CategoryModule/services/index'
 import {useRouter} from "vue-router";
+import {modalController} from "@ionic/vue";
+import CreateCategoryModal from "@/modules/CategoryModule/components/CreateCategoryModal.vue";
 
 export function useCategoryModule() {
     const categories = ref<any>([]);
@@ -27,9 +29,39 @@ export function useCategoryModule() {
         router.push(`/main/detail/${id}`).then();
     }
 
+    function _setCategory({description, title}: any) {
+        loading.value = true;
+        const data = {
+            category: selectedCategory.value.data,
+            sections: [],
+            description,
+            title,
+            createdAt: new Date().toLocaleTimeString(),
+            updatedAt: new Date().toLocaleTimeString(),
+        }
+        CategoryService.setDocument(data)
+            .then(() => {
+                categories.value.unshift(data);
+                loading.value = false;
+            })
+    }
+
+    const createCategory = async () => {
+        const modal = await modalController.create({
+            component: CreateCategoryModal,
+            cssClass: 'createCategoryModal'
+        });
+        modal.present();
+        const {data} = await modal.onWillDismiss();
+        if (data) {
+            _setCategory(data.data)
+        }
+    };
+
     return {
         selectCategory,
         toDetailPage,
+        createCategory,
         selectedCategory,
         loading,
         categories

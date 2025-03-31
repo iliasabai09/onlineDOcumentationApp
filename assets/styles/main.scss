@@ -1,0 +1,35 @@
+@import "modals";
+@import "utils";
+
+h1, h2, h3, h4, h5, h6, span, a, p, div, section, main, pre {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-weight: 600;
+  @media (max-width: 768px) {
+    font-size: 26px;
+  }
+}
+
+h2 {
+  font-weight: 600;
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
+}
+
+h3 {
+  font-weight: 600;
+  @media (max-width: 768px) {
+    font-size: 22px;
+  }
+}
+
+h4 {
+  font-weight: 600;
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+}
