@@ -1,24 +1,28 @@
 <script setup lang="ts">
 import {PropType, ref} from "vue";
-import {IonTextarea} from "@ionic/vue";
+import {IonButton, IonIcon, IonTextarea} from "@ionic/vue";
+import {removeOutline} from "ionicons/icons";
+import {IContentTerminal} from "@/modules/DetailModule/interfaces";
 
 const props = defineProps({
   data: {
-    type: Object as PropType<any>
+    type: Object as PropType<IContentTerminal>,
+    required: true,
   },
-  globalEdit: {
+  editMode: {
     type: Boolean,
     default: false
   }
 })
 
-const modelData = ref(props.data)
-const editMode = ref(false)
+const emits = defineEmits(['editUpdate', 'removeContent']);
+
+const modelData = ref<IContentTerminal>(props.data)
 </script>
 
 <template>
-  <div @click="globalEdit && (editMode = true)">
-    <template v-if="!globalEdit || !editMode">
+  <div @click="emits('editUpdate')">
+    <template v-if="!editMode">
       <pre class="terminal">{{ modelData.text }}</pre>
     </template>
     <template v-else>
@@ -30,6 +34,9 @@ const editMode = ref(false)
             fill="outline"
             placeholder="Enter terminal"
         ></ion-textarea>
+        <ion-button color="danger" @click="emits('removeContent')" style="min-height: 100%; margin: 0">
+          <ion-icon :icon="removeOutline"></ion-icon>
+        </ion-button>
       </div>
     </template>
   </div>
@@ -37,19 +44,17 @@ const editMode = ref(false)
 
 <style scoped lang="scss">
 .editMode {
-  border-radius: 4px;
-  border: 2px solid #00a400;
-  padding: 16px;
+  display: flex;
+  gap: 8px;
 }
 
 .terminal {
   background-color: #000;
   color: #fff;
-  border-radius: 12px;
+  border-radius: 4px;
   padding: 12px 16px;
   width: 100%;
   line-height: 1.3rem;
-  max-width: 700px;
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 1px;

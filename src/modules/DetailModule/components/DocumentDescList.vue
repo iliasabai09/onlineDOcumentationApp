@@ -2,19 +2,22 @@
 import {PropType, ref} from "vue";
 import {IonButton, IonInput, IonIcon, IonTextarea} from "@ionic/vue";
 import {addOutline, removeOutline} from 'ionicons/icons';
+import {IContentDescList} from "@/modules/DetailModule/interfaces";
 
 const props = defineProps({
   data: {
-    type: Object as PropType<any>
+    type: Object as PropType<IContentDescList>,
+    required: true,
   },
-  globalEdit: {
+  editMode: {
     type: Boolean,
     default: false
   }
 })
 
-const modelData = ref(props.data)
-const editMode = ref(false)
+const emits = defineEmits(['editUpdate', 'removeContent']);
+
+const modelData = ref<IContentDescList>(props.data)
 
 const addItem = () => {
   modelData.value.list.push({
@@ -24,15 +27,17 @@ const addItem = () => {
 };
 
 const removeItem = (index: number) => {
-  modelData.value.items.splice(index, 1);
+  modelData.value.list.splice(index, 1);
+  if (modelData.value.list.length === 0) emits('removeContent');
 };
+
 </script>
 
 <template>
-  <div class="heading" @click="globalEdit && (editMode = true)">
-    <template v-if="!globalEdit || !editMode">
+  <div class="heading" @click="emits('editUpdate')">
+    <template v-if="!editMode">
       <div class="descList">
-        <div v-for="(desc, idx) in modelData.list" :key="desc">
+        <div v-for="(desc, idx) in modelData.list" :key="idx">
           <h3>{{ idx + 1 }}. {{ desc.title }}</h3>
           <p>{{ desc.text }}</p>
         </div>
@@ -40,7 +45,7 @@ const removeItem = (index: number) => {
     </template>
     <template v-else>
       <div class="editMode">
-        <div v-for="(desc, index) in modelData.list" :key="desc" class="descGroupEdit">
+        <div v-for="(desc, index) in modelData.list" :key="index" class="descGroupEdit">
           <div style="display: flex; gap:12px">
             <ion-input
                 v-model="desc.title"
@@ -61,7 +66,7 @@ const removeItem = (index: number) => {
               placeholder="Enter description"
           ></ion-textarea>
         </div>
-        <ion-button shape="round" style="text-transform: capitalize" size="small" @click="addItem">
+        <ion-button shape="round" style="text-transform: capitalize" @click="addItem">
           Добавить
           <ion-icon :icon="addOutline"></ion-icon>
         </ion-button>
@@ -75,9 +80,6 @@ const removeItem = (index: number) => {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  border-radius: 16px;
-  border: 2px solid #00a400;
-  padding: 16px;
 }
 
 .descGroupEdit {

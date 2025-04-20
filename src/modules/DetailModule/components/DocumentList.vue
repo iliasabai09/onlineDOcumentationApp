@@ -2,19 +2,22 @@
 import {PropType, ref} from "vue";
 import {IonButton, IonInput, IonIcon} from "@ionic/vue";
 import {addOutline, removeOutline} from 'ionicons/icons';
+import {IContentList} from "@/modules/DetailModule/interfaces";
 
 const props = defineProps({
   data: {
-    type: Object as PropType<any>
+    type: Object as PropType<IContentList>,
+    required: true,
   },
-  globalEdit: {
+  editMode: {
     type: Boolean,
     default: false
   }
 })
 
-const modelData = ref(props.data)
-const editMode = ref(false)
+const emits = defineEmits(['editUpdate', 'removeContent']);
+
+const modelData = ref<IContentList>(props.data)
 
 const addItem = () => {
   modelData.value.items.push('');
@@ -22,12 +25,14 @@ const addItem = () => {
 
 const removeItem = (index: number) => {
   modelData.value.items.splice(index, 1);
+  if (modelData.value.items.length === 0) emits('removeContent');
 };
+
 </script>
 
 <template>
-  <div @click="globalEdit && (editMode = true)">
-    <template v-if="!globalEdit || !editMode">
+  <div @click="emits('editUpdate')">
+    <template v-if="!editMode">
       <div class="numbered-list-container">
         <h4>{{ modelData.title }}</h4>
         <div class="numbered-list">
@@ -74,9 +79,6 @@ const removeItem = (index: number) => {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  border-radius: 16px;
-  border: 2px solid #00a400;
-  padding: 16px;
 }
 
 .input-container {

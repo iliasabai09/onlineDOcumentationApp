@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import {PropType, ref} from "vue";
 import {IonInput} from "@ionic/vue";
+import {IDocumentDetail} from "@/modules/DetailModule/interfaces";
 
 const props = defineProps({
   detail: {
-    type: Object as PropType<any>
+    type: Object as PropType<IDocumentDetail>,
+    required: true,
   },
   globalEdit: {
     type: Boolean,
@@ -12,7 +14,7 @@ const props = defineProps({
   }
 })
 
-const data = ref(props.detail)
+const data = ref<IDocumentDetail>(props.detail)
 const editMode = ref(false)
 
 </script>

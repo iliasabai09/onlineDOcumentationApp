@@ -51,20 +51,13 @@ const login = async () => {
     useToast().error(err.message);
   }
 };
-
 </script>
 
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Auth page</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content class="ion-padding">
+    <ion-content class="manContent">
       <div class="authLayout">
-        <div class="form">
+        <form class="form" @submit.prevent="login">
           <ion-input
               v-model="form.email"
               label="Email"
@@ -79,15 +72,22 @@ const login = async () => {
               label-placement="floating"
               fill="outline"
               placeholder="Enter password"
-              type="password"
           ></ion-input>
-        </div>
-        <div class="formActions">
-          <ion-button class="formActions-btn" color="secondary" @click="register" :disabled="!isValidForm">Register
-          </ion-button>
-          <ion-button class="formActions-btn" color="tertiary" @click="login" :disabled="!isValidForm">Login
-          </ion-button>
-        </div>
+
+          <div class="formActions">
+            <ion-button class="formActions-btn" color="secondary" @click="register" :disabled="!isValidForm">
+              Register
+            </ion-button>
+            <ion-button
+                type="submit"
+                class="formActions-btn"
+                color="tertiary"
+                :disabled="!isValidForm"
+            >
+              Login
+            </ion-button>
+          </div>
+        </form>
       </div>
     </ion-content>
   </ion-page>
@@ -99,8 +99,8 @@ const login = async () => {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-width: 500px;
   margin: 0 auto;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images2.alphacoders.com/823/82372.jpg') center/cover no-repeat;
 }
 
 .formActions {
@@ -117,6 +117,20 @@ const login = async () => {
 .form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
+  max-width: 500px;
+  width: 100%;
+  padding: 16px;
+  box-sizing: content-box;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 16px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>

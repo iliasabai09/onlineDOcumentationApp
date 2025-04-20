@@ -1,25 +1,28 @@
 <script setup lang="ts">
 import {PropType, ref} from "vue";
-import {IonInput} from "@ionic/vue";
+import {IonButton, IonIcon, IonInput} from "@ionic/vue";
+import {removeOutline} from "ionicons/icons";
+import {IContentDescription} from "@/modules/DetailModule/interfaces";
 
 const props = defineProps({
   data: {
-    type: Object as PropType<any>
+    type: Object as PropType<IContentDescription>,
+    required: true,
   },
-  globalEdit: {
+  editMode: {
     type: Boolean,
     default: false
   }
 })
 
-const modelData = ref(props.data)
-const editMode = ref(false)
+const modelData = ref<IContentDescription>(props.data)
+const emits = defineEmits(['editUpdate', 'removeContent']);
 
 </script>
 
 <template>
-  <div @click="globalEdit && (editMode = true)">
-    <template v-if="!globalEdit || !editMode">
+  <div @click="emits('editUpdate')">
+    <template v-if="!editMode">
       <p>{{ modelData.text }}</p>
     </template>
     <template v-else>
@@ -31,11 +34,18 @@ const editMode = ref(false)
             fill="outline"
             placeholder="Enter description"
         ></ion-input>
+        <ion-button color="danger" @click="emits('removeContent')" style="height: 56px; margin: 0">
+          <ion-icon :icon="removeOutline"></ion-icon>
+        </ion-button>
       </div>
     </template>
   </div>
 </template>
 
 <style scoped>
-
+.editMode {
+  display: flex;
+  align-content: center;
+  gap: 8px;
+}
 </style>

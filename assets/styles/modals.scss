@@ -3,3 +3,14 @@
   --height: 275px;
   --border-radius: 12px;
 }
+
+.addContentModal {
+  --width: 450px;
+  --height: 275px;
+  --border-radius: 12px;
+
+  @media (max-width: 768px) {
+    --width: 90vw;
+    --height: 360px;
+  }
+}

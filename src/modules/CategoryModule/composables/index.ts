@@ -51,7 +51,7 @@ export function useCategoryModule() {
             component: CreateCategoryModal,
             cssClass: 'createCategoryModal'
         });
-        modal.present();
+        await modal.present();
         const {data} = await modal.onWillDismiss();
         if (data) {
             _setCategory(data.data)

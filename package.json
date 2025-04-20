@@ -24,11 +24,13 @@
     "firebase": "^11.4.0",
     "idb": "^8.0.2",
     "ionicons": "^7.0.0",
+    "prismjs": "^1.30.0",
     "vue": "^3.3.0",
     "vue-router": "^4.2.0"
   },
   "devDependencies": {
     "@capacitor/cli": "^7.1.0",
+    "@types/prismjs": "^1.26.5",
     "@vitejs/plugin-legacy": "^5.0.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/eslint-config-typescript": "^12.0.0",

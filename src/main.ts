@@ -19,6 +19,9 @@ import '@ionic/vue/css/text-transformation.css';
 import '@ionic/vue/css/flex-utils.css';
 import '@ionic/vue/css/display.css';
 
+import 'prismjs';
+import 'prismjs/themes/prism-okaidia.min.css';
+
 /**
  * Ionic Dark Mode
  * -----------------------------------------------------
