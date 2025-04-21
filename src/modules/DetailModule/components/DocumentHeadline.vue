@@ -30,24 +30,24 @@ content: []
   <div class="heading" @click="globalEdit && (editMode = true)">
     <template v-if="!globalEdit || !editMode">
       <div>
-        <div class="flex gap-2">
-              <h1>{{ data.title }}</h1>
-              <ion-button color="primary" @click="addSection()" style="height: 54px; margin: 0">
-                <ion-icon :icon="addOutline"></ion-icon>
-              </ion-button>
-        </div>
+        <h1>{{ data.title }}</h1>
         <p>{{ data.description }}</p>
       </div>
     </template>
     <template v-else>
       <div class="editMode">
-        <ion-input
-            v-model="data.title"
-            label="Title"
-            label-placement="floating"
-            fill="outline"
-            placeholder="Enter title"
-        ></ion-input>
+        <div class="flex gap-2 align-center">
+          <ion-input
+              v-model="data.title"
+              label="Title"
+              label-placement="floating"
+              fill="outline"
+              placeholder="Enter title"
+          ></ion-input>
+          <ion-button color="primary" @click="addSection()" style="height: 54px; margin: 0">
+                <ion-icon :icon="addOutline"></ion-icon>
+          </ion-button>
+        </div>
         <ion-input
             v-model="data.description"
             label="Description"
