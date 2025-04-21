@@ -10,12 +10,6 @@
           <ion-button @click="updateDoc()">
             <ion-icon slot="icon-only" :icon="saveOutline"></ion-icon>
           </ion-button>
-          <ion-button @click="updateDoc()">
-            <ion-icon slot="icon-only" :icon="removeOutline"></ion-icon>
-          </ion-button>
-          <ion-button @click="updateDoc()">
-            <ion-icon slot="icon-only" :icon="removeOutline"></ion-icon>
-          </ion-button>
           <ion-toggle abel-placement="start" color="secondary" v-model="editMode" :checked="editMode"
                       @ionChange="editSectionTitles = []; toggleEditMode()">
           </ion-toggle>
