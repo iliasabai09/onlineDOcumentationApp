@@ -29,6 +29,7 @@ function selectCode(code: any) {
 const codeColors = {
   js: 'blue',
   html: '#ff7400',
+  ts: 'blue'
 }
 
 const showPopover = ref(false)
