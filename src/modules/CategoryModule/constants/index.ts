@@ -7,6 +7,13 @@ export const navigations = [
         icon: '/icons/vue.png',
     },
     {
+        id: 1,
+        parentId: 0,
+        label: 'English',
+        data: 'english',
+        icon: '/icons/english.png',
+    },
+    {
         id: 2,
         parentId: 0,
         label: 'Angular',
