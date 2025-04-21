@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import {PropType, ref} from "vue";
-import {IonInput} from "@ionic/vue";
+import {IonInput, IonButton, IonIcon} from "@ionic/vue";
 import {IDocumentDetail} from "@/modules/DetailModule/interfaces";
-
+import {addOutline} from "ionicons/icons";
 const props = defineProps({
   detail: {
     type: Object as PropType<IDocumentDetail>,
@@ -17,13 +17,25 @@ const props = defineProps({
 const data = ref<IDocumentDetail>(props.detail)
 const editMode = ref(false)
 
+function addSection() {
+data.value.sections.push({
+title: 'New section',
+content: []
+})
+}
+
 </script>
 
 <template>
   <div class="heading" @click="globalEdit && (editMode = true)">
     <template v-if="!globalEdit || !editMode">
       <div>
-        <h1>{{ data.title }}</h1>
+        <div class="flex gap-2">
+              <h1>{{ data.title }}</h1>
+              <ion-button color="primary" @click="addSection()" style="height: 54px; margin: 0">
+                <ion-icon :icon="addOutline"></ion-icon>
+              </ion-button>
+        </div>
         <p>{{ data.description }}</p>
       </div>
     </template>
