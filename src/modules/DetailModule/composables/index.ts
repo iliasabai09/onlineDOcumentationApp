@@ -35,7 +35,7 @@ export function useDocumentDetail() {
         if (data && data.data.value && detail.value) {
             const addData = ADD_CONTENT_DATA[data.data.value as keyof typeof ADD_CONTENT_DATA]
             const idx = editId.value as number;
-            detail.value.sections[idx].content.push(addData)
+            detail.value.sections[idx].content.push({...addData})
         }
     };
 
