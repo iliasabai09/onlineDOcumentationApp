@@ -1,14 +1,14 @@
 import {createRouter, createWebHistory} from '@ionic/vue-router';
 import {RouteRecordRaw} from 'vue-router';
 import MainLayout from "@/layouts/MainLayout.vue";
-import AuthLayout from "@/layouts/AuthLayout.vue";
 import {auth} from '@/firebase';
 import {onAuthStateChanged} from 'firebase/auth';
+import AuthModule from "@/modules/AuthModule/views/AuthModule.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/auth',
-        component: AuthLayout
+        component: AuthModule
     },
     {
         path: '/',

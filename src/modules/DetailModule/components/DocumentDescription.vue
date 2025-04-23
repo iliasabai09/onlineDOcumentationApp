@@ -48,4 +48,10 @@ const emits = defineEmits(['editUpdate', 'removeContent']);
   align-content: center;
   gap: 8px;
 }
+
+p {
+  line-height: 24px;
+  font-size: 1.05rem;
+  font-style: italic;
+}
 </style>
